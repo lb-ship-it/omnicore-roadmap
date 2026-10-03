@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OmniCore roadmap</title>
+  <style>
+    :root {
+      --bg: #10141c;
+      --card: #1b2330;
+      --card-line: #2c384c;
+      --text: #e8eef7;
+      --muted: #9aa8bd;
+      --accent: #8eb6ff;
+      --todo: #8b97a8;
+      --todo-bg: #243041;
+      --progress: #f0b429;
+      --progress-bg: #3a3014;
+      --done: #3ddc97;
+      --done-bg: #143028;
+      --bar: #2a3548;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px 18px 64px;
+    }
+    h1 {
+      font-size: 1.85rem;
+      line-height: 1.15;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+    h2 {
+      font-size: 1.05rem;
+      margin: 28px 0 10px;
+    }
+    a { color: var(--accent); }
+    .kicker {
+      margin: 0 0 6px;
+      color: var(--accent);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .intro { font-size: 1.08rem; margin: 0 0 8px; }
+    .meta, .hint { color: var(--muted); font-size: 0.92rem; }
+    blockquote {
+      margin: 12px 0;
+      padding: 12px 14px;
+      border-left: 3px solid var(--accent);
+      background: #161d2a;
+      border-radius: 0 10px 10px 0;
+    }
+    ul { margin: 8px 0 0; padding-left: 1.15rem; }
+    li { margin: 4px 0; }
+    .metrics {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .metrics li {
+      background: var(--card);
+      border: 1px solid var(--card-line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 0;
+    }
+    .progress-wrap { margin: 8px 0 16px; }
+    .progress-label { margin: 0 0 8px; font-weight: 650; }
+    .bar {
+      height: 10px;
+      background: var(--bar);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar > span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--done);
+      border-radius: inherit;
+    }
+    .cards { display: grid; gap: 12px; }
+    .card {
+      display: block;
+      width: 100%;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+      background: var(--card);
+      border: 1px solid var(--card-line);
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+      cursor: pointer;
+    }
+    .card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    time { color: var(--muted); font-size: 0.92rem; }
+    .status {
+      flex: none;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: var(--todo-bg);
+      color: var(--todo);
+    }
+    .card[data-status="progress"] .status { background: var(--progress-bg); color: var(--progress); }
+    .card[data-status="done"] .status { background: var(--done-bg); color: var(--done); }
+    .card h3 { margin: 8px 0 0; font-size: 1.08rem; }
+    .window { margin: 2px 0 0; color: var(--muted); font-size: 0.88rem; }
+    .note {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="kicker">OmniCore Vision</p>
+    <h1>OmniCore roadmap</h1>
+    <p class="intro">Cíl do 26. listopadu 2026: 3–5 platících distributorů.</p>
+    <p class="meta">Stanoveno 27. září 2026. Autor: Maggie. Schválil: Láďa. Horizont 60 dní od stanovení cíle.</p>
+    <p class="meta">Zdroj: <a href="https://github.com/lb-ship-it/OmniCore/blob/main/docs/SMART_GOALS.md">docs/SMART_GOALS.md</a> (commit 00c759b).</p>
+
+    <h2>Hlavní cíl</h2>
+    <blockquote>
+      Do 60 dnů uvést do ostrého provozu autonomní tender intelligence pipeline pro veřejné zakázky na zdravotnické prostředky v ČR a SR (CPV 33100000-1 a podřízené kódy). Rozbor zadávací dokumentace do 24 hodin od publikace, včetně detekce diskriminačních parametrů. Prvních 3–5 platících B2B distributorů (2–20 zaměstnanců) na měsíční odběr.
+    </blockquote>
+    <ul>
+      <li>Žádná zmeškaná lhůta (dotazy do 8 dnů předem, podání nabídek).</li>
+      <li>Odhalení diskriminačních parametrů a návrh námitek podle § 241 ZZVZ.</li>
+      <li>Prediktivní model bodového zisku.</li>
+      <li>Monitoring expirací rámcových smluv v Registru smluv 90–180 dní předem.</li>
+    </ul>
+
+    <h2>Měřitelné části cíle</h2>
+    <ul class="metrics">
+      <li>100&nbsp;% záchyt veřejných zakázek v klíčových segmentech zdravotnických prostředků, bez zpoždění.</li>
+      <li>Čas generování rozboru: méně než 24 hodin od vydání zadávací dokumentace nebo požadavku klienta.</li>
+      <li>15 vzorových bezplatných rozborů pro distributory v běžících tendrech. Fáze 1 k tomu staví knihovnu 5 referenčních rozborů.</li>
+      <li>3–5 aktivních B2B klientů. Měsíční paušál 15&nbsp;000–35&nbsp;000 Kč podle rozsahu monitoringu.</li>
+    </ul>
+
+    <h2>Fáze</h2>
+    <div class="progress-wrap">
+      <p class="progress-label" id="progress-label">Hotovo 0 ze 4 fází</p>
+      <div class="bar" aria-hidden="true"><span id="progress-bar"></span></div>
+    </div>
+    <div class="cards" id="cards">
+      <button type="button" class="card" data-id="f1" data-default="progress">
+        <div class="card-top">
+          <time datetime="2026-10-12">do 12. října 2026</time>
+          <span class="status"></span>
+        </div>
+        <h3>Fáze 1 · Pilot a šablony rozborů</h3>
+        <p class="window">Den 1–15</p>
+        <ul>
+          <li>Referenční knihovna 5 hloubkových rozborů zadávací dokumentace: ortopedie, kardiologie, všeobecná chirurgie.</li>
+          <li>Skript pro pravidelné vytahování nových zakázek z NEN a Věstníku veřejných zakázek.</li>
+          <li>V harmonogramu stejného okna: Tender Parser, referenční rozbory, ověření na ostrých datech.</li>
+        </ul>
+      </button>
+      <button type="button" class="card" data-id="f2" data-default="todo">
+        <div class="card-top">
+          <time datetime="2026-10-27">do 27. října 2026</time>
+          <span class="status"></span>
+        </div>
+        <h3>Fáze 2 · Target list a akviziční signály</h3>
+        <p class="window">Den 16–30</p>
+        <ul>
+          <li>Zmapovat 30 aktivních distributorů v ČR s končícími rámcovými smlouvami v Registru smluv.</li>
+          <li>Připravit personalizované podklady pro Láďu.</li>
+          <li>Přehled harmonogramu u stejného okna uvádí identifikaci 20 distributorů s končícími smlouvami.</li>
+        </ul>
+      </button>
+      <button type="button" class="card" data-id="f3" data-default="todo">
+        <div class="card-top">
+          <time datetime="2026-11-11">do 11. listopadu 2026</time>
+          <span class="status"></span>
+        </div>
+        <h3>Fáze 3 · Direct outreach s přidanou hodnotou</h3>
+        <p class="window">Den 31–45</p>
+        <ul>
+          <li>Odeslat vzorové rozbory relevantním distributorům při vypsání nové zakázky.</li>
+          <li>V harmonogramu: dodat bezplatný vzorový rozbor do 24 hodin.</li>
+        </ul>
+      </button>
+      <button type="button" class="card" data-id="f4" data-default="todo">
+        <div class="card-top">
+          <time datetime="2026-11-26">do 26. listopadu 2026</time>
+          <span class="status"></span>
+        </div>
+        <h3>Fáze 4 · Uzavření prvních smluv</h3>
+        <p class="window">Den 46–60</p>
+        <ul>
+          <li>Konverze 3–5 distributorů do stálých klientů OmniCore Vision.</li>
+          <li>V harmonogramu: uzavřít prvních 3–5 platících klientských smluv.</li>
+        </ul>
+      </button>
+    </div>
+    <p class="hint">Kliknutím na kartu se přepíná stav: k udělání (todo) → rozpracováno (in progress) → hotovo (done). Volba zůstane v tomto prohlížeči.</p>
+    <p class="note">Dokument označuje technologické jádro jako už hotové (Command Pad v1.5.0 na VPS, web omnicore.vision, funkční SQLite CRM). Není to fáze roadmapy a nemá přepínač stavu.</p>
+  </main>
+  <script>
+    (function () {
+      var KEY = "omnicore-roadmap-status";
+      var ORDER = ["todo", "progress", "done"];
+      var LABELS = {
+        todo: "K udělání · todo",
+        progress: "Rozpracováno · in progress",
+        done: "Hotovo · done"
+      };
+      var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
+      var state = {};
+
+      function defaults() {
+        var out = {};
+        cards.forEach(function (card) {
+          out[card.getAttribute("data-id")] = card.getAttribute("data-default");
+        });
+        return out;
+      }
+
+      function load() {
+        var base = defaults();
+        try {
+          var raw = localStorage.getItem(KEY);
+          if (!raw) return base;
+          var parsed = JSON.parse(raw);
+          Object.keys(base).forEach(function (id) {
+            if (ORDER.indexOf(parsed[id]) !== -1) base[id] = parsed[id];
+          });
+        } catch (e) {}
+        return base;
+      }
+
+      function paint() {
+        var done = 0;
+        cards.forEach(function (card) {
+          var id = card.getAttribute("data-id");
+          var status = state[id];
+          card.setAttribute("data-status", status);
+          card.querySelector(".status").textContent = LABELS[status];
+          if (status === "done") done += 1;
+        });
+        var total = cards.length;
+        document.getElementById("progress-label").textContent = "Hotovo " + done + " ze " + total + " fází";
+        document.getElementById("progress-bar").style.width = (total ? (done / total) * 100 : 0) + "%";
+      }
+
+      function cycle(id) {
+        var i = ORDER.indexOf(state[id]);
+        state[id] = ORDER[(i + 1) % ORDER.length];
+        try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+        paint();
+      }
+
+      state = load();
+      paint();
+      cards.forEach(function (card) {
+        card.addEventListener("click", function () {
+          cycle(card.getAttribute("data-id"));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
