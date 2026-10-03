@@ -39,10 +39,7 @@
       margin: 0 0 10px;
       letter-spacing: -0.02em;
     }
-    h2 {
-      font-size: 1.05rem;
-      margin: 28px 0 10px;
-    }
+    h2 { font-size: 1.05rem; margin: 28px 0 10px; }
     a { color: var(--accent); }
     .kicker {
       margin: 0 0 6px;
@@ -76,35 +73,27 @@
       padding: 10px 12px;
       margin: 0;
     }
-    .progress-wrap { margin: 8px 0 16px; }
-    .progress-label { margin: 0 0 8px; font-weight: 650; }
-    .bar {
-      height: 10px;
-      background: var(--bar);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-    .bar > span {
-      display: block;
-      height: 100%;
-      width: 0;
-      background: var(--done);
-      border-radius: inherit;
-    }
     .cards { display: grid; gap: 12px; }
     .card {
-      display: block;
-      width: 100%;
-      text-align: left;
-      font: inherit;
-      color: inherit;
       background: var(--card);
       border: 1px solid var(--card-line);
       border-radius: 14px;
       padding: 14px 14px 12px;
+    }
+    .card.is-open { border-color: var(--accent); }
+    .expander {
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+      background: transparent;
+      border: 0;
+      padding: 0;
       cursor: pointer;
     }
-    .card:focus-visible {
+    .expander:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
     }
@@ -128,7 +117,13 @@
     .card[data-status="done"] .status { background: var(--done-bg); color: var(--done); }
     .card h3 { margin: 8px 0 0; font-size: 1.08rem; }
     .window { margin: 2px 0 0; color: var(--muted); font-size: 0.88rem; }
-
+    .detail {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--card-line);
+    }
+    .detail[hidden] { display: none; }
+    .status-line { margin: 0 0 8px; font-weight: 650; }
     .timeline {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
@@ -138,13 +133,8 @@
       padding: 8px 6px 2px;
       margin: 0 0 16px;
     }
-    .timeline .mermaid {
-      min-width: 920px;
-    }
-    .timeline svg {
-      max-width: none;
-      height: auto;
-    }
+    .timeline .mermaid { min-width: 920px; }
+    .timeline svg { max-width: none; height: auto; }
     .note {
       margin-top: 22px;
       color: var(--muted);
@@ -194,129 +184,97 @@
     </div>
 
     <h2>Fáze</h2>
-    <div class="progress-wrap">
-      <p class="progress-label" id="progress-label">Hotovo 0 ze 4 fází</p>
-      <div class="bar" aria-hidden="true"><span id="progress-bar"></span></div>
-    </div>
     <div class="cards" id="cards">
-      <button type="button" class="card" data-id="f1" data-default="progress">
-        <div class="card-top">
-          <time datetime="2026-10-12">do 12. října 2026</time>
-          <span class="status"></span>
+      <article class="card" data-status="progress">
+        <button type="button" class="expander" aria-expanded="false" aria-controls="detail-f1">
+          <div class="card-top">
+            <time datetime="2026-10-12">do 12. října 2026</time>
+            <span class="status">Rozpracováno · in progress</span>
+          </div>
+          <h3>Fáze 1 · Pilot a šablony rozborů</h3>
+          <p class="window">Den 1–15</p>
+        </button>
+        <div class="detail" id="detail-f1" hidden>
+          <p class="status-line">Stav: Rozpracováno · in progress</p>
+          <ul>
+            <li>Referenční knihovna 5 hloubkových rozborů zadávací dokumentace: ortopedie, kardiologie, všeobecná chirurgie.</li>
+            <li>Skript pro pravidelné vytahování nových zakázek z NEN a Věstníku veřejných zakázek.</li>
+            <li>V harmonogramu stejného okna: Tender Parser, referenční rozbory, ověření na ostrých datech.</li>
+          </ul>
         </div>
-        <h3>Fáze 1 · Pilot a šablony rozborů</h3>
-        <p class="window">Den 1–15</p>
-        <ul>
-          <li>Referenční knihovna 5 hloubkových rozborů zadávací dokumentace: ortopedie, kardiologie, všeobecná chirurgie.</li>
-          <li>Skript pro pravidelné vytahování nových zakázek z NEN a Věstníku veřejných zakázek.</li>
-          <li>V harmonogramu stejného okna: Tender Parser, referenční rozbory, ověření na ostrých datech.</li>
-        </ul>
-      </button>
-      <button type="button" class="card" data-id="f2" data-default="todo">
-        <div class="card-top">
-          <time datetime="2026-10-27">do 27. října 2026</time>
-          <span class="status"></span>
+      </article>
+      <article class="card" data-status="todo">
+        <button type="button" class="expander" aria-expanded="false" aria-controls="detail-f2">
+          <div class="card-top">
+            <time datetime="2026-10-27">do 27. října 2026</time>
+            <span class="status">K udělání · todo</span>
+          </div>
+          <h3>Fáze 2 · Target list a akviziční signály</h3>
+          <p class="window">Den 16–30</p>
+        </button>
+        <div class="detail" id="detail-f2" hidden>
+          <p class="status-line">Stav: K udělání · todo</p>
+          <ul>
+            <li>Zmapovat 30 aktivních distributorů v ČR s končícími rámcovými smlouvami v Registru smluv.</li>
+            <li>Připravit personalizované podklady pro Láďu.</li>
+            <li>Přehled harmonogramu u stejného okna uvádí identifikaci 20 distributorů s končícími smlouvami.</li>
+          </ul>
         </div>
-        <h3>Fáze 2 · Target list a akviziční signály</h3>
-        <p class="window">Den 16–30</p>
-        <ul>
-          <li>Zmapovat 30 aktivních distributorů v ČR s končícími rámcovými smlouvami v Registru smluv.</li>
-          <li>Připravit personalizované podklady pro Láďu.</li>
-          <li>Přehled harmonogramu u stejného okna uvádí identifikaci 20 distributorů s končícími smlouvami.</li>
-        </ul>
-      </button>
-      <button type="button" class="card" data-id="f3" data-default="todo">
-        <div class="card-top">
-          <time datetime="2026-11-11">do 11. listopadu 2026</time>
-          <span class="status"></span>
+      </article>
+      <article class="card" data-status="todo">
+        <button type="button" class="expander" aria-expanded="false" aria-controls="detail-f3">
+          <div class="card-top">
+            <time datetime="2026-11-11">do 11. listopadu 2026</time>
+            <span class="status">K udělání · todo</span>
+          </div>
+          <h3>Fáze 3 · Direct outreach s přidanou hodnotou</h3>
+          <p class="window">Den 31–45</p>
+        </button>
+        <div class="detail" id="detail-f3" hidden>
+          <p class="status-line">Stav: K udělání · todo</p>
+          <ul>
+            <li>Odeslat vzorové rozbory relevantním distributorům při vypsání nové zakázky.</li>
+            <li>V harmonogramu: dodat bezplatný vzorový rozbor do 24 hodin.</li>
+          </ul>
         </div>
-        <h3>Fáze 3 · Direct outreach s přidanou hodnotou</h3>
-        <p class="window">Den 31–45</p>
-        <ul>
-          <li>Odeslat vzorové rozbory relevantním distributorům při vypsání nové zakázky.</li>
-          <li>V harmonogramu: dodat bezplatný vzorový rozbor do 24 hodin.</li>
-        </ul>
-      </button>
-      <button type="button" class="card" data-id="f4" data-default="todo">
-        <div class="card-top">
-          <time datetime="2026-11-26">do 26. listopadu 2026</time>
-          <span class="status"></span>
+      </article>
+      <article class="card" data-status="todo">
+        <button type="button" class="expander" aria-expanded="false" aria-controls="detail-f4">
+          <div class="card-top">
+            <time datetime="2026-11-26">do 26. listopadu 2026</time>
+            <span class="status">K udělání · todo</span>
+          </div>
+          <h3>Fáze 4 · Uzavření prvních smluv</h3>
+          <p class="window">Den 46–60</p>
+        </button>
+        <div class="detail" id="detail-f4" hidden>
+          <p class="status-line">Stav: K udělání · todo</p>
+          <ul>
+            <li>Konverze 3–5 distributorů do stálých klientů OmniCore Vision.</li>
+            <li>V harmonogramu: uzavřít prvních 3–5 platících klientských smluv.</li>
+          </ul>
         </div>
-        <h3>Fáze 4 · Uzavření prvních smluv</h3>
-        <p class="window">Den 46–60</p>
-        <ul>
-          <li>Konverze 3–5 distributorů do stálých klientů OmniCore Vision.</li>
-          <li>V harmonogramu: uzavřít prvních 3–5 platících klientských smluv.</li>
-        </ul>
-      </button>
+      </article>
     </div>
-    <p class="hint">Kliknutím na kartu se přepíná stav: k udělání (todo) → rozpracováno (in progress) → hotovo (done). Volba zůstane v tomto prohlížeči.</p>
+    <p class="hint">Kliknutím na fázi se otevře nebo zavře detail s cíli a stavem.</p>
     <p class="note">Dokument označuje technologické jádro jako už hotové (Command Pad v1.5.0 na VPS, web omnicore.vision, funkční SQLite CRM). Není to fáze roadmapy a nemá přepínač stavu.</p>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <script>
     (function () {
-      var KEY = "omnicore-roadmap-status";
-      var ORDER = ["todo", "progress", "done"];
-      var LABELS = {
-        todo: "K udělání · todo",
-        progress: "Rozpracováno · in progress",
-        done: "Hotovo · done"
-      };
-      var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
-      var state = {};
-
-      function defaults() {
-        var out = {};
-        cards.forEach(function (card) {
-          out[card.getAttribute("data-id")] = card.getAttribute("data-default");
-        });
-        return out;
-      }
-
-      function load() {
-        var base = defaults();
-        try {
-          var raw = localStorage.getItem(KEY);
-          if (!raw) return base;
-          var parsed = JSON.parse(raw);
-          Object.keys(base).forEach(function (id) {
-            if (ORDER.indexOf(parsed[id]) !== -1) base[id] = parsed[id];
-          });
-        } catch (e) {}
-        return base;
-      }
-
-      function paint() {
-        var done = 0;
-        cards.forEach(function (card) {
-          var id = card.getAttribute("data-id");
-          var status = state[id];
-          card.setAttribute("data-status", status);
-          card.querySelector(".status").textContent = LABELS[status];
-          if (status === "done") done += 1;
-        });
-        var total = cards.length;
-        document.getElementById("progress-label").textContent = "Hotovo " + done + " ze " + total + " fází";
-        document.getElementById("progress-bar").style.width = (total ? (done / total) * 100 : 0) + "%";
-      }
-
-      function cycle(id) {
-        var i = ORDER.indexOf(state[id]);
-        state[id] = ORDER[(i + 1) % ORDER.length];
-        try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
-        paint();
-      }
-
-      state = load();
-      paint();
-      cards.forEach(function (card) {
-        card.addEventListener("click", function () {
-          cycle(card.getAttribute("data-id"));
-        });
+      var cards = document.getElementById("cards");
+      cards.addEventListener("click", function (ev) {
+        var btn = ev.target.closest(".expander");
+        if (!btn || !cards.contains(btn)) return;
+        var detail = document.getElementById(btn.getAttribute("aria-controls"));
+        if (!detail) return;
+        var open = detail.hidden;
+        detail.hidden = !open;
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        btn.closest(".card").classList.toggle("is-open", open);
       });
     })();
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <script>
     mermaid.initialize({
       startOnLoad: false,
