@@ -128,6 +128,23 @@
     .card[data-status="done"] .status { background: var(--done-bg); color: var(--done); }
     .card h3 { margin: 8px 0 0; font-size: 1.08rem; }
     .window { margin: 2px 0 0; color: var(--muted); font-size: 0.88rem; }
+
+    .timeline {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      background: #121826;
+      border: 1px solid var(--card-line);
+      border-radius: 14px;
+      padding: 8px 6px 2px;
+      margin: 0 0 16px;
+    }
+    .timeline .mermaid {
+      min-width: 920px;
+    }
+    .timeline svg {
+      max-width: none;
+      height: auto;
+    }
     .note {
       margin-top: 22px;
       color: var(--muted);
@@ -161,6 +178,20 @@
       <li>15 vzorových bezplatných rozborů pro distributory v běžících tendrech. Fáze 1 k tomu staví knihovnu 5 referenčních rozborů.</li>
       <li>3–5 aktivních B2B klientů. Měsíční paušál 15&nbsp;000–35&nbsp;000 Kč podle rozsahu monitoringu.</li>
     </ul>
+
+    <h2>Časová osa</h2>
+    <div class="timeline">
+      <pre class="mermaid">gantt
+    title Harmonogram od 27. září 2026
+    dateFormat YYYY-MM-DD
+    axisFormat %d.%m.
+    section Fáze
+    Fáze 1 Pilot a šablony rozborů         :f1, 2026-09-27, 2026-10-12
+    Fáze 2 Target list a akviziční signály :f2, 2026-10-12, 2026-10-27
+    Fáze 3 Direct outreach                 :f3, 2026-10-27, 2026-11-11
+    Fáze 4 Uzavření prvních smluv          :f4, 2026-11-11, 2026-11-26
+</pre>
+    </div>
 
     <h2>Fáze</h2>
     <div class="progress-wrap">
@@ -284,6 +315,23 @@
         });
       });
     })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: "dark",
+      securityLevel: "strict",
+      gantt: {
+        leftPadding: 300,
+        barHeight: 26,
+        barGap: 8,
+        topPadding: 44,
+        fontSize: 14,
+        sectionFontSize: 14
+      }
+    });
+    mermaid.run({ querySelector: ".mermaid" });
   </script>
 </body>
 </html>
